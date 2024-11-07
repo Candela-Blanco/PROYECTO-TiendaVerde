@@ -1,0 +1,8 @@
+<ul>
+  {%for ensalada in ensaladas%}
+  <li>
+    {{ensalada.nombre}} - {{ensalada.peso}} g - ${{ensalada.precio}} -
+    {{ensalada.ingredientes}}
+  </li>
+  {%endfor%}
+</ul>
