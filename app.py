@@ -146,9 +146,9 @@ def edit_ensalada(id):
                 (id, ingrediente_id),
             )
         db.commit()
-        return redirect(url_for("index"))
+        return redirect(url_for("read_ensaladas"))
     return render_template(
-        "edit_ensalada.html",
+        "edit_ensaladas.html",
         ensalada=ensalada,
         ingredientes=ingredientes,
         ingredientes_ensalada=ingredientes_ensalada,
