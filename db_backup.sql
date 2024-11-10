@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.39, for Linux (x86_64)
+-- MariaDB dump 10.19  Distrib 10.11.6-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: tiendaverde
 -- ------------------------------------------------------
--- Server version	8.0.39-0ubuntu0.20.04.1
+-- Server version	10.11.6-MariaDB-0+deb12u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,10 +21,10 @@
 
 DROP TABLE IF EXISTS `ensalada_ingrediente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ensalada_ingrediente` (
-  `id_ensalada` int NOT NULL,
-  `id_ingrediente` int NOT NULL,
+  `id_ensalada` int(11) NOT NULL,
+  `id_ingrediente` int(11) NOT NULL,
   PRIMARY KEY (`id_ensalada`,`id_ingrediente`),
   KEY `id_ingrediente` (`id_ingrediente`),
   CONSTRAINT `ensalada_ingrediente_ibfk_1` FOREIGN KEY (`id_ensalada`) REFERENCES `ensaladas` (`id`),
@@ -38,7 +38,11 @@ CREATE TABLE `ensalada_ingrediente` (
 
 LOCK TABLES `ensalada_ingrediente` WRITE;
 /*!40000 ALTER TABLE `ensalada_ingrediente` DISABLE KEYS */;
-INSERT INTO `ensalada_ingrediente` VALUES (1,2),(1,7),(1,9);
+INSERT INTO `ensalada_ingrediente` VALUES
+(15,2),
+(15,3),
+(15,7),
+(15,9);
 /*!40000 ALTER TABLE `ensalada_ingrediente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -48,14 +52,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ensaladas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ensaladas` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
   `precio` float NOT NULL,
   `peso` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +68,8 @@ CREATE TABLE `ensaladas` (
 
 LOCK TABLES `ensaladas` WRITE;
 /*!40000 ALTER TABLE `ensaladas` DISABLE KEYS */;
-INSERT INTO `ensaladas` VALUES (1,'Mixta',99.5,10);
+INSERT INTO `ensaladas` VALUES
+(15,'hola',398,4892);
 /*!40000 ALTER TABLE `ensaladas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,10 +79,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ingredientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ingredientes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -88,7 +93,12 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES (2,'Tomate'),(3,'Cebolla'),(7,'Zanahoria'),(8,'Cebolla2'),(9,'Lechuga');
+INSERT INTO `ingredientes` VALUES
+(2,'Tomate'),
+(3,'Cebolla'),
+(7,'Zanahoria'),
+(8,'Cebolla2'),
+(9,'Lechuga');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -101,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-10 19:07:08
+-- Dump completed on 2024-11-10 20:58:19
