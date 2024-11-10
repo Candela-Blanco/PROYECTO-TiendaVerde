@@ -1,8 +1,13 @@
+<a href="{{url_for("create_ensaladas")}}">Crear ensalada</a>
 <ul>
   {%for ensalada in ensaladas%}
   <li>
     {{ensalada.nombre}} - {{ensalada.peso}} g - ${{ensalada.precio}} -
-    {{ensalada.ingredientes}}
+    {{ensalada.ingredientes}} {{ensalada.id}}
+    <a href="{{url_for("edit_ensalada",id=ensalada.id)}}">Editar</a>
+    <form action="{{url_for("delete_ensaladas",id=ensalada.id)}}" method="post">
+      <button type="submit">Eliminar</button>
+    </form>
   </li>
   {%endfor%}
 </ul>

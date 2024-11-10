@@ -1,4 +1,39 @@
 <form method="post">
-  <label for=""></label>
-  <input type="text" name="" />
+  <label for="nombre">Nombre: </label>
+  <input
+    type="text"
+    name="nombre"
+    id="nombre"
+    placeholder="Ingrese nombre aquí..."
+    required
+  />
+  <label for="precio">Precio: </label>
+  <input
+    type="number"
+    step="0.1"
+    name="precio"
+    id="precio"
+    placeholder="Ingrese precio aquí..."
+    required
+  />
+  <label for="peso">Peso: </label>
+  <input
+    type="number"
+    step="0.1"
+    name="peso"
+    id="peso"
+    placeholder="Ingrese peso aquí..."
+    required
+  />
+  <label>Ingredientes: </label>
+  {%for ingrediente in ingredientes%}
+  <input
+    type="checkbox"
+    name="ingredientes"
+    id="ingrediente_{{ingrediente.id}}"
+    value="{{ingrediente.id}}"
+  />
+  <label for="ingrediente_{{ingrediente.id}}">{{ingrediente.nombre}}</label>
+  {% endfor %}
+  <button type="submit">Crear</button>
 </form>
