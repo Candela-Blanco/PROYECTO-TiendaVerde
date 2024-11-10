@@ -1,9 +1,3 @@
-{% extends "base.html" %} {% block title %}Tienda Verde{% endblock title %} {%
-block head %}
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/edit_ensalada.css') }}" />
-{% endblock head %} {% block content %}
 <div class="form-container">
     <h1>Editar Ensalada</h1>
     <form method="post" class="edit-form">
@@ -70,4 +64,3 @@ block head %}
         <button type="submit" class="btn-submit">Actualizar Ensalada</button>
     </form>
 </div>
-{% endblock %}
