@@ -1,11 +1,32 @@
-<ul>
-    {%for ingrediente in ingredientes%}
-    <li>
-      {{ingrediente.nombre}}
-      <form action="{{url_for("delete_ingredientes",id=ingrediente.id)}}" method="post">
-        <button class="buttons" type="submit"><span class="button-content">Eliminar</span></button>
-      </form>
-    </li>
-    {%endfor%}
-</ul>
-<a href="{{url_for("create_ingredientes")}}">Crear ingrediente</a>
+{% extends "base.html" %}
+{% block title %}Ingredientes{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/view_ingredientes.css')}}">
+{% endblock head %}
+{% block content %}
+{% if mensaje %}
+<h2>{{ mensaje }}</h2>
+{% endif %}
+  <div class="content">
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th colspan="2">Acción</th>
+      </tr>
+      {%for ingrediente in ingredientes%}
+      <tr>
+        <td>{{ingrediente.nombre}}</td>
+        <td><form action="{{url_for("delete_ingredientes",id=ingrediente.id)}}" method="post" onsubmit="return confirm('¿Seguro que quieres eliminar el ingrediente {{ingrediente.nombre}}?');"> 
+          <button class="buttons" id="peque" type="submit"><span class="button-content">Eliminar</span></button>
+        </form></td>
+      </tr>
+      {%endfor%}
+    </table>
+  </div>
+<footer>
+  <form action="{{url_for("create_ingredientes")}}">
+    <button class="button">Crear</button>
+  </form>
+</footer>
+
+{% endblock content %}

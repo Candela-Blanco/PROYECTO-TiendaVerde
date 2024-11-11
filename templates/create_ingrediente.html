@@ -1,11 +1,27 @@
-<form method="post">
-  <label for="nombre">Nombre: </label>
-  <input
-    type="text"
-    name="nombre"
-    id="nombre"
-    placeholder="Ingrese nombre aquí..."
-    required
-  />
-  <button type="submit">Crear</button>
-</form>
+{% extends "base.html" %} {% block title %}Crear Ingrediente{% endblock title %}
+{%block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/create_ingredientes.css') }}"
+/>
+{% endblock head %} {% block content %}
+<div class="form-container">
+  <h1>Crear Ingrediente</h1>
+  <form method="post" class="salad-form">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input
+        placeholder="Ingresa el nombre aquí..."
+        type="text"
+        id="name"
+        name="nombre"
+        class="form-input"
+        required
+      />
+    </div>
+    <button type="submit" class="buttons">
+      <span class="button-content">Guardar Ingrediente</span>
+    </button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+.item-expandible{
+    display: none;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #454545;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus {
+    border-color: rgb(193, 163, 98);
+    outline: none;
+    background-color: whitesmoke;
+}
+
+.form-group input[type="text"]:hover,
+.form-group input[type="number"]:hover {
+    background-color: whitesmoke;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    background-color: #565656;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    accent-color: rgb(193, 163, 98);
+    margin-right: 0.5rem;
+}
+
+.checkbox-item label {
+    font-size: 1rem;
+    color: white;
+}

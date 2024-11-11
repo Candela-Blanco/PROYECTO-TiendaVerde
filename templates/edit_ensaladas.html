@@ -1,66 +1,80 @@
+{% extends "base.html" %} {% block title %}Editar Ensaladas{% endblock title %}
+{%block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/edit_ensaladas.css') }}"
+/>
+{% endblock head %} {% block content %}
 <div class="form-container">
-    <h1>Editar Ensalada</h1>
-    <form method="post" class="edit-form">
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value="{{ ensalada.nombre }}"
-                required />
-        </div>
+  <h1>Editar Ensalada</h1>
+  <form method="post" class="edit-form">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        value="{{ ensalada.nombre }}"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-            <label for="precio">Precio:</label>
-            <input
-                type="number"
-                step="0.01"
-                id="precio"
-                name="precio"
-                value="{{ ensalada.precio }}"
-                required />
-        </div>
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input
+        type="number"
+        step="0.01"
+        id="precio"
+        name="precio"
+        value="{{ ensalada.precio }}"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-            <label for="peso">Peso:</label>
-            <input
-                type="number"
-                step="0.01"
-                id="peso"
-                name="peso"
-                value="{{ ensalada.peso }}"
-                required />
-        </div>
+    <div class="form-group">
+      <label for="peso">Peso:</label>
+      <input
+        type="number"
+        step="0.01"
+        id="peso"
+        name="peso"
+        value="{{ ensalada.peso }}"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-            <label>Ingredientes:</label>
-            <div class="checkbox-group">
-                {% for ingrediente in ingredientes %}
-                <div class="checkbox-item">
-                    <input
-                        type="checkbox"
-                        id="ingrediente_{{ ingrediente.id }}"
-                        name="ingredientes"
-                        value="{{ ingrediente.id }}"
-                        {%
-                        if
-                        ingrediente.id
-                        in
-                        ingredientes_ensalada
-                        %}
-                        checked
-                        {%
-                        endif
-                        %} />
-                    <label for="ingrediente_{{ ingrediente.id }}"
-                        >{{ ingrediente.nombre }}</label
-                    >
-                </div>
-                {% endfor %}
-            </div>
+    <div class="form-group">
+      <label>Ingredientes:</label>
+      <div class="checkbox-group">
+        {% for ingrediente in ingredientes %}
+        <div class="checkbox-item">
+          <input
+            type="checkbox"
+            id="ingrediente_{{ ingrediente.id }}"
+            name="ingredientes"
+            value="{{ ingrediente.id }}"
+            {%
+            if
+            ingrediente.id
+            in
+            ingredientes_ensalada
+            %}
+            checked
+            {%
+            endif
+            %}
+          />
+          <label for="ingrediente_{{ ingrediente.id }}"
+            >{{ ingrediente.nombre }}</label
+          >
         </div>
+        {% endfor %}
+      </div>
+    </div>
 
-        <button type="submit" class="btn-submit">Actualizar Ensalada</button>
-    </form>
+    <button type="submit" class="buttons">
+      <span class="button-content">Actualizar Ensalada</span>
+    </button>
+  </form>
 </div>
+{% endblock %}
