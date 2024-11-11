@@ -32,14 +32,14 @@ def read_ensaladas():
         if not ensaladas:
             return render_template(
                 "view_ensaladas.html",
-                ensaladas=[],
+                ensaladas=ensaladas,
                 search_term=search_term,
                 mensaje="No se encontraron ensaladas.",
             )
     except Exception as e:
         return render_template(
             "view_ensaladas.html",
-            ensaladas=[],
+            ensaladas=ensaladas,
             mensaje="Ocurrió un error al procesar la búsqueda.",
         )
 
