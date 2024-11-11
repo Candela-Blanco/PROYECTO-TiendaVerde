@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CRUD de ensaladas e ingredientes">
     <title>{% block title %}Tienda Verde{% endblock title %}</title>
     <link rel="stylesheet" href="{{url_for("static",filename="css/base.css")}}">
     {% block head %}{% endblock head %}
@@ -12,7 +13,7 @@
         <div class="item-expandible">
             <form method="GET" action="{{ url_for('read_ensaladas') }}">
                 <div class="container">
-                    <input type="text" name="search" class="input" required="" placeholder="Buscar ensaladas">
+                    <input type="text" name="search" class="input" required placeholder="Buscar ensaladas">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                             <title>Search</title>

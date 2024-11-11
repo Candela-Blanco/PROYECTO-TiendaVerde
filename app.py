@@ -53,11 +53,7 @@ def create_ensaladas():
     db = conn()
     cursor = db.cursor(dictionary=True)
 
-    cursor.execute(
-        """
-            SELECT * from ingredientes
-       """
-    )
+    cursor.execute("SELECT * from ingredientes")
     ingredientes = cursor.fetchall()
     if request.method == "POST":
         nombre = request.form["nombre"]
@@ -65,18 +61,23 @@ def create_ensaladas():
         peso = request.form["peso"]
         ingrediente_selec = request.form.getlist("ingredientes")
         cursor.execute(
-            """
-                       INSERT INTO ensaladas (nombre,precio,peso) VALUES (%s,%s,%s)
-                       """,
+            "SELECT * FROM ensaladas WHERE nombre = %s",
+            (nombre,),
+        )
+        ensalada_existente = cursor.fetchone()
+        if ensalada_existente:
+            return render_template(
+                "create_ensaladas.html", message=f"Ya existe la ensalada {nombre}"
+            )
+        cursor.execute(
+            "INSERT INTO ensaladas (nombre,precio,peso) VALUES (%s,%s,%s)",
             (nombre, precio, peso),
         )
         db.commit()
         id_ensalada = cursor.lastrowid
         for ingrediente_id in ingrediente_selec:
             cursor.execute(
-                """
-                           INSERT INTO ensalada_ingrediente (id_ensalada, id_ingrediente) VALUES (%s,%s)
-                           """,
+                "INSERT INTO ensalada_ingrediente (id_ensalada, id_ingrediente) VALUES (%s,%s)",
                 (id_ensalada, ingrediente_id),
             )
         db.commit()
@@ -90,15 +91,11 @@ def delete_ensaladas(id):
     db = conn()
     cursor = db.cursor(dictionary=True)
     cursor.execute(
-        """
-                   DELETE FROM ensalada_ingrediente where id_ensalada=%s
-                   """,
+        "DELETE FROM ensalada_ingrediente where id_ensalada=%s",
         (id,),
     )
     cursor.execute(
-        """
-                   DELETE FROM ensaladas where id = %s
-                   """,
+        "DELETE FROM ensaladas where id = %s",
         (id,),
     )
     db.commit()
@@ -109,11 +106,7 @@ def delete_ensaladas(id):
 def read_ingredientes():
     db = conn()
     cursor = db.cursor(dictionary=True)
-    cursor.execute(
-        """
-            SELECT * from ingredientes;
-       """
-    )
+    cursor.execute("SELECT * from ingredientes")
     ingredientes = cursor.fetchall()
     return render_template("view_ingredientes.html", ingredientes=ingredientes)
 
@@ -123,15 +116,11 @@ def delete_ingredientes(id):
     db = conn()
     cursor = db.cursor(dictionary=True)
     cursor.execute(
-        """
-                   DELETE FROM ensalada_ingrediente where id_ingrediente=%s
-                   """,
+        "DELETE FROM ensalada_ingrediente where id_ingrediente=%s",
         (id,),
     )
     cursor.execute(
-        """
-                   DELETE FROM ingredientes where id = %s
-                   """,
+        "DELETE FROM ingredientes where id = %s",
         (id,),
     )
     db.commit()
@@ -145,9 +134,16 @@ def create_ingredientes():
     if request.method == "POST":
         nombre = request.form["nombre"]
         cursor.execute(
-            """
-                       INSERT INTO ingredientes (nombre) VALUES (%s)
-                       """,
+            "SELECT * FROM ingredientes WHERE nombre = %s",
+            (nombre,),
+        )
+        ingrediente_existente = cursor.fetchone()
+        if ingrediente_existente:
+            return render_template(
+                "create_ingrediente.html", message=f"Ya existe el ingrediente {nombre}"
+            )
+        cursor.execute(
+            "INSERT INTO ingredientes (nombre) VALUES (%s)",
             (nombre,),
         )
         db.commit()
@@ -165,9 +161,7 @@ def edit_ensalada(id):
     cursor.execute("SELECT * FROM ingredientes")
     ingredientes = cursor.fetchall()
     cursor.execute(
-        """
-                   SELECT id_ingrediente from ensalada_ingrediente WHERE id_ensalada=%s
-                   """,
+        "SELECT id_ingrediente from ensalada_ingrediente WHERE id_ensalada=%s",
         (id,),
     )
     ingredientes_ensalada = cursor.fetchall()
@@ -179,9 +173,7 @@ def edit_ensalada(id):
         peso = request.form["peso"]
         selected_ingredientes = request.form.getlist("ingredientes")
         cursor.execute(
-            """
-                       UPDATE ensaladas SET nombre=%s,precio=%s,peso=%s WHERE id=%s
-                       """,
+            "UPDATE ensaladas SET nombre=%s,precio=%s,peso=%s WHERE id=%s",
             (nombre, precio, peso, id),
         )
         db.commit()
@@ -199,3 +191,7 @@ def edit_ensalada(id):
         ingredientes=ingredientes,
         ingredientes_ensalada=ingredientes_ensalada,
     )
+
+
+if __name__ == "__main__":
+    app.run()

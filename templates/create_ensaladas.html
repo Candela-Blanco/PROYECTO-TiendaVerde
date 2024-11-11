@@ -3,7 +3,9 @@
 <link
     rel="stylesheet"
     href="{{ url_for('static', filename='css/create_ensalada.css') }}" />
-{% endblock head %} {% block content %}
+{% endblock head %} {% block content %} {% if message %}
+<h4>{{message}}</h4>
+{% endif %}
 <div class="form-container">
     <h1>Crear Ensalada</h1>
     <form method="post" class="salad-form">

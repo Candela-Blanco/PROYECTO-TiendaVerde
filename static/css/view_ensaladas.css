@@ -15,6 +15,10 @@ td {
   padding: 10px;
 }
 
+td {
+  word-break: break-word;
+}
+
 #peque {
   height: 2rem;
   padding: 0 1rem;
