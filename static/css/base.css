@@ -1,10 +1,12 @@
-*{
+* {
   box-sizing: border-box;
 }
-body{
-    background-color: #333;
-    color: whitesmoke;
+
+body {
+  background-color: #333;
+  color: whitesmoke;
 }
+
 nav {
   display: flex;
   flex-direction: row;
@@ -17,23 +19,37 @@ nav {
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
 }
-input:hover{
+
+input:hover {
   background-color: #262626;
 }
-input:focus{
+
+input:focus {
   background-color: #191A1E;
 }
-.item{
-  padding: 20px;
+
+input:is(:-webkit-autofill, :autofill) {
+  background-color: #191A1E;
 }
-a{
+
+input:-internal-autofill-selected {
+  background-color: #191A1E !important;
+}
+
+.item {
+  padding: 20px 0px 20px 0px;
+}
+
+a {
   color: whitesmoke;
   text-decoration: none;
+  padding: 20px;
 }
-.item:hover{
+
+a:hover {
   background-color: #262626;
   border-radius: 30px;
-
+  padding: 20px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
@@ -45,49 +61,49 @@ a{
 }
 
 .button {
-    cursor: pointer;
-    position: relative;
-    padding: 10px 24px;
-    font-size: 18px;
-    color: rgb(193, 163, 98);
-    border: 2px solid rgb(193, 163, 98);
-    border-radius: 34px;
-    background-color: transparent;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-    overflow: hidden;
-  }
-  
-  .button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 50px;
-    height: 50px;
-    border-radius: inherit;
-    scale: 0;
-    z-index: -1;
-    background-color: rgb(193, 163, 98);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    -webkit-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    -moz-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    -ms-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    -o-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: rgb(193, 163, 98);
+  border: 2px solid rgb(193, 163, 98);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
 }
-  
-  .button:hover::before {
-    scale: 3;
-  }
-  
-  .button:hover {
-    color: #212121;
-    scale: 1.1;
-    box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
-  }
-  
-  .button:active {
-    scale: 1;
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: rgb(193, 163, 98);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  -webkit-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  -moz-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  -ms-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  -o-transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+}
+
+.button:active {
+  scale: 1;
 }
 
 .buttons {
@@ -113,8 +129,9 @@ a{
   position: relative;
   z-index: 1;
 }
+
 .buttons::before {
-  content:"";
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -127,11 +144,12 @@ a{
   transition: all 0.475s;
 }
 
-@media screen and (max-width: 768px){
-  .item-expandible{
+@media screen and (max-width: 768px) {
+  .item-expandible {
     display: none;
   }
-  nav{
+
+  nav {
     justify-content: center;
   }
 }

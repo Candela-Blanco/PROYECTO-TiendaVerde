@@ -7,6 +7,11 @@
     justify-content: center;
 }
 
+h1 {
+    text-align: center;
+    color: rgb(193, 163, 98);
+}
+
 .bento {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -17,7 +22,7 @@
         "two four four six";
     gap: 10px;
     max-width: 1200px;
-    max-height: 90vh;
+    max-height: 80vh;
 }
 
 .one {
