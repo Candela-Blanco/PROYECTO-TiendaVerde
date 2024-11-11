@@ -1,42 +1,40 @@
 {% extends "base.html" %}
-{% block title %}Crear Ensaladas{% endblock title %}Crear Ensaladas
+{% block title %}Crear Ensaladas{% endblock %}
 {% block head %}
-<link rel="stylesheet"
-href="{{url_for("static",filename="css/view_ensaladas.css")}}">
-{% endblock head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/view_ensaladas.css')}}">
+{% endblock %}
 {% block content %}
-{%if not ensaladas%}
-<h2>Crea la primera ensalada</h4>
-  <p> ⬇️ </p>
+{% if mensaje %}
+<h2>{{ mensaje }}</h2>
 {% endif %}
-<div class="content">
-  <table>
-    {%for ensalada in ensaladas%}
-    <tr>
-      <th>Nombre</th>
-      <th>Peso</th>
-      <th>Precio</th>
-      <th>Ingredientes</th>
-      <th colspan="2" >Acciones</th>
-    </tr>
-    <tr>
-      <td>{{ensalada.nombre}} </td>
-      <td>{{ensalada.peso}} g </td>
-      <td>${{ensalada.precio}}</td>
-      <td>{{ensalada.ingredientes}}</td>
-      <td><form action="{{url_for("edit_ensalada",id=ensalada.id)}}">
-        <button class="buttons" id="peque" type="submit"><span class="button-content">Editar</span></button>
-      </form></td>
-      <td><form action="{{url_for("delete_ensaladas",id=ensalada.id)}}" method="post">
-        <button class="buttons" id="peque" type="submit"><span class="button-content">Eliminar</span></button>
-      </form></td>
-    </tr>
-    {%endfor%}
-  </table>
-</div>
-<footer>
-  <form action="{{url_for("create_ensaladas")}}">
-    <button class="button">Crear</button>
-  </form>
-</footer>
-{% endblock content %}
+  <div class="content">
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Peso</th>
+        <th>Precio</th>
+        <th>Ingredientes</th>
+        <th colspan="2" >Acciones</th>
+      </tr>
+      {%for ensalada in ensaladas%}
+      <tr>
+        <td>{{ensalada.nombre}} </td>
+        <td>{{ensalada.peso}} g </td>
+        <td>${{ensalada.precio}}</td>
+        <td>{{ensalada.ingredientes}}</td>
+        <td><form action="{{url_for("edit_ensalada",id=ensalada.id)}}">
+          <button class="buttons" id="peque" type="submit"><span class="button-content">Editar</span></button>
+        </form></td>
+        <td><form action="{{url_for("delete_ensaladas",id=ensalada.id)}}" method="post" onsubmit="return confirm('¿Seguro que quieres eliminar la ensalasada {{ensalada.nombre}}?');">
+          <button class="buttons" id="peque" type="submit"><span class="button-content">Eliminar</span></button>
+        </form></td>
+      </tr>
+      {%endfor%}
+    </table>
+  </div>
+  <footer>
+    <form action="{{url_for("create_ensaladas")}}">
+      <button class="button">Crear</button>
+    </form>
+  </footer>
+  {% endblock content %}

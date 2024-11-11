@@ -2,24 +2,14 @@
 {%block head %} <link rel="stylesheet"
 href="{{url_for("static",filename="css/index.css")}}"> {% endblock head %} {%
 block content %}
-<div class="bento">
-    <div class="1">
-        <img src="static/img/1.avif" alt="Imagen 1" />
-    </div>
-    <div class="2">
-        <img src="static/img/2.avif" alt="Imagen 2" />
-    </div>
-    <div class="3">
-        <img src="static/img/3.avif" alt="Imagen 3" />
-    </div>
-    <div class="4">
-        <img src="static/img/4.avif" alt="Imagen 4" />
-    </div>
-    <div class="5">
-        <img src="static/img/5.avif" alt="Imagen 5" />
-    </div>
-    <div class="6">
-        <img src="static/img/6.avif" alt="Imagen 6" />
+<div class="content">
+    <div class="bento">
+        <div class="one"><img src="/static/img/1.avif" alt="Imagen 1" /></div>
+        <div class="two"><img src="/static/img/2.avif" alt="Imagen 2" /></div>
+        <div class="three"><img src="/static/img/3.avif" alt="Imagen 3" /></div>
+        <div class="four"><img src="/static/img/4.avif" alt="Imagen 4" /></div>
+        <div class="five"><img src="/static/img/5.avif" alt="Imagen 5" /></div>
+        <div class="six"><img src="/static/img/6.avif" alt="Imagen 6" /></div>
     </div>
 </div>
 {% endblock content %}

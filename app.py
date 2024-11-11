@@ -9,19 +9,43 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/ensaladas")
+@app.route("/ensaladas", methods=["GET", "POST"])
 def read_ensaladas():
-    db = conn()
-    cursor = db.cursor(dictionary=True)
-    cursor.execute(
-        """
-            SELECT ensaladas.id, ensaladas.nombre, ensaladas.precio, ensaladas.peso,
-            GROUP_CONCAT(ingredientes.nombre) AS ingredientes FROM ensaladas LEFT JOIN ensalada_ingrediente ON ensaladas.id = ensalada_ingrediente.id_ensalada LEFT JOIN ingredientes ON ensalada_ingrediente.id_ingrediente = ingredientes.id GROUP BY ensaladas.id;
-       """
+    search_term = request.args.get("search", "").lower()
+    query = """
+        SELECT ensaladas.id, ensaladas.nombre, ensaladas.precio, ensaladas.peso,
+        GROUP_CONCAT(ingredientes.nombre) AS ingredientes
+        FROM ensaladas
+        LEFT JOIN ensalada_ingrediente ON ensaladas.id = ensalada_ingrediente.id_ensalada
+        LEFT JOIN ingredientes ON ensalada_ingrediente.id_ingrediente = ingredientes.id
+    """
+    query_params = []
+    if search_term:
+        query += " WHERE LOWER(ensaladas.nombre) LIKE %s"
+        query_params.append(f"%{search_term}%")
+    query += " GROUP BY ensaladas.id"
+    try:
+        db = conn()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute(query, query_params)
+        ensaladas = cursor.fetchall()
+        if not ensaladas:
+            return render_template(
+                "view_ensaladas.html",
+                ensaladas=[],
+                search_term=search_term,
+                mensaje="No se encontraron ensaladas.",
+            )
+    except Exception as e:
+        return render_template(
+            "view_ensaladas.html",
+            ensaladas=[],
+            mensaje="Ocurrió un error al procesar la búsqueda.",
+        )
+
+    return render_template(
+        "view_ensaladas.html", ensaladas=ensaladas, search_term=search_term
     )
-    ensaladas = cursor.fetchall()
-    print(ensaladas)
-    return render_template("view_ensaladas.html", ensaladas=ensaladas)
 
 
 @app.route("/ensaladas/create", methods=["GET", "POST"])
@@ -91,7 +115,6 @@ def read_ingredientes():
        """
     )
     ingredientes = cursor.fetchall()
-    print(ingredientes)
     return render_template("view_ingredientes.html", ingredientes=ingredientes)
 
 

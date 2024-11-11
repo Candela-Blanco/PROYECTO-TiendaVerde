@@ -1,3 +1,71 @@
-.bento{
+.item-expandible {
+    display: none;
+}
+
+.content {
     display: flex;
+    justify-content: center;
+}
+
+.bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.8fr 1.2fr 1fr;
+    grid-template-areas:
+        "one three three five"
+        "two three three five"
+        "two four four six";
+    gap: 10px;
+    max-width: 1200px;
+    max-height: 90vh;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three {
+    grid-area: three;
+}
+
+.four {
+    grid-area: four;
+}
+
+.five {
+    grid-area: five;
+}
+
+.six {
+    grid-area: six;
+}
+
+
+.bento img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .bento {
+        gap: 5px;
+    }
+
+    .bento img {
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
 }

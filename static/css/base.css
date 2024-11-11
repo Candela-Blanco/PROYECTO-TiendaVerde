@@ -1,40 +1,47 @@
+*{
+  box-sizing: border-box;
+}
 body{
     background-color: #333;
     color: whitesmoke;
 }
-ul{
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 100px;
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #161515;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+input:hover{
+  background-color: #262626;
+}
+input:focus{
+  background-color: #191A1E;
+}
+.item{
+  padding: 20px;
+}
+a{
+  color: whitesmoke;
+  text-decoration: none;
+}
+.item:hover{
+  background-color: #262626;
+  border-radius: 30px;
+
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
 }
 
-nav{
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    background-color: #161515;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    margin-bottom: 10px;
-}
-
-li a{
-    text-decoration: none;
-    color: whitesmoke;
-    padding: 10px;
-}
-
-li a:hover{
-    background-color: #262626;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+.item-expandible {
+  width: 100px;
 }
 
 .button {
@@ -118,4 +125,13 @@ li a:hover{
   border-radius: inherit;
   background: rgb(193, 163, 98);
   transition: all 0.475s;
+}
+
+@media screen and (max-width: 768px){
+  .item-expandible{
+    display: none;
+  }
+  nav{
+    justify-content: center;
+  }
 }
