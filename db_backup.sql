@@ -42,7 +42,10 @@ INSERT INTO `ensalada_ingrediente` VALUES
 (15,2),
 (15,3),
 (15,7),
-(15,9);
+(15,9),
+(16,2),
+(16,3),
+(16,9);
 /*!40000 ALTER TABLE `ensalada_ingrediente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +62,7 @@ CREATE TABLE `ensaladas` (
   `precio` float NOT NULL,
   `peso` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +72,8 @@ CREATE TABLE `ensaladas` (
 LOCK TABLES `ensaladas` WRITE;
 /*!40000 ALTER TABLE `ensaladas` DISABLE KEYS */;
 INSERT INTO `ensaladas` VALUES
-(15,'hola',398,4892);
+(15,'hola',398,4892),
+(16,'Mixta',12,12);
 /*!40000 ALTER TABLE `ensaladas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-10 21:27:56
+-- Dump completed on 2024-11-11  2:22:50
