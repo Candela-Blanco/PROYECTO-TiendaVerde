@@ -24,7 +24,7 @@ def read_ensaladas():
     return render_template("view_ensaladas.html", ensaladas=ensaladas)
 
 
-@app.route("/ensaladas/create",methods=["GET","POST"])
+@app.route("/ensaladas/create", methods=["GET", "POST"])
 def create_ensaladas():
     db = conn()
     cursor = db.cursor(dictionary=True)
@@ -36,34 +36,47 @@ def create_ensaladas():
     )
     ingredientes = cursor.fetchall()
     if request.method == "POST":
-        nombre=request.form["nombre"]
-        precio=request.form["precio"]
-        peso=request.form["peso"]
-        ingrediente_selec=request.form.getlist("ingredientes")
-        cursor.execute("""
+        nombre = request.form["nombre"]
+        precio = request.form["precio"]
+        peso = request.form["peso"]
+        ingrediente_selec = request.form.getlist("ingredientes")
+        cursor.execute(
+            """
                        INSERT INTO ensaladas (nombre,precio,peso) VALUES (%s,%s,%s)
-                       """,(nombre,precio,peso))
+                       """,
+            (nombre, precio, peso),
+        )
         db.commit()
-        id_ensalada=cursor.lastrowid
+        id_ensalada = cursor.lastrowid
         for ingrediente_id in ingrediente_selec:
-            cursor.execute("""
+            cursor.execute(
+                """
                            INSERT INTO ensalada_ingrediente (id_ensalada, id_ingrediente) VALUES (%s,%s)
-                           """, (id_ensalada, ingrediente_id))
+                           """,
+                (id_ensalada, ingrediente_id),
+            )
         db.commit()
         return redirect(url_for("read_ensaladas"))
     else:
         return render_template("create_ensaladas.html", ingredientes=ingredientes)
 
+
 @app.route("/ensaladas/delete/<int:id>", methods=["POST"])
 def delete_ensaladas(id):
     db = conn()
     cursor = db.cursor(dictionary=True)
-    cursor.execute("""
+    cursor.execute(
+        """
                    DELETE FROM ensalada_ingrediente where id_ensalada=%s
-                   """, (id, ))
-    cursor.execute("""
+                   """,
+        (id,),
+    )
+    cursor.execute(
+        """
                    DELETE FROM ensaladas where id = %s
-                   """, (id, ))
+                   """,
+        (id,),
+    )
     db.commit()
     return redirect(url_for("read_ensaladas"))
 
@@ -82,34 +95,44 @@ def read_ingredientes():
     return render_template("view_ingredientes.html", ingredientes=ingredientes)
 
 
-
 @app.route("/ingredientes/delete/<int:id>", methods=["POST"])
 def delete_ingredientes(id):
     db = conn()
     cursor = db.cursor(dictionary=True)
-    cursor.execute("""
+    cursor.execute(
+        """
                    DELETE FROM ensalada_ingrediente where id_ingrediente=%s
-                   """, (id, ))
-    cursor.execute("""
+                   """,
+        (id,),
+    )
+    cursor.execute(
+        """
                    DELETE FROM ingredientes where id = %s
-                   """, (id, ))
+                   """,
+        (id,),
+    )
     db.commit()
     return redirect(url_for("read_ingredientes"))
 
-@app.route("/ingredientes/create",methods=["GET","POST"])
+
+@app.route("/ingredientes/create", methods=["GET", "POST"])
 def create_ingredientes():
     db = conn()
     cursor = db.cursor(dictionary=True)
     if request.method == "POST":
-        nombre=request.form["nombre"]
-        cursor.execute("""
+        nombre = request.form["nombre"]
+        cursor.execute(
+            """
                        INSERT INTO ingredientes (nombre) VALUES (%s)
-                       """,(nombre, ))
+                       """,
+            (nombre,),
+        )
         db.commit()
         return redirect(url_for("read_ingredientes"))
     else:
         return render_template("create_ingrediente.html")
-    
+
+
 @app.route("/ensalada/edit/<int:id>", methods=["GET", "POST"])
 def edit_ensalada(id):
     db = conn()
