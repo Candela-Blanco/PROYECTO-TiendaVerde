@@ -7,34 +7,29 @@
 {% if mensaje %}
 <h2>{{ mensaje }}</h2>
 {% endif %}
-  <div class="content">
-    <table>
-      <tr>
-        <th>Nombre</th>
-        <th>Peso</th>
-        <th>Precio</th>
-        <th>Ingredientes</th>
-        <th colspan="2" >Acciones</th>
-      </tr>
-      {%for ensalada in ensaladas%}
-      <tr>
-        <td>{{ensalada.nombre}} </td>
-        <td>{{ensalada.peso}} g </td>
-        <td>${{ensalada.precio}}</td>
-        <td>{{ensalada.ingredientes}}</td>
-        <td><form action="{{url_for("edit_ensalada",id=ensalada.id)}}">
-          <button class="buttons" id="peque" type="submit"><span class="button-content">Editar</span></button>
-        </form></td>
-        <td><form action="{{url_for("delete_ensaladas",id=ensalada.id)}}" method="post" onsubmit="return confirm('¿Seguro que quieres eliminar la ensalasada {{ensalada.nombre}}?');">
-          <button class="buttons" id="peque" type="submit"><span class="button-content">Eliminar</span></button>
-        </form></td>
-      </tr>
-      {%endfor%}
-    </table>
+<div class="content">
+<div class="cards">
+    {% for ensalada in ensaladas %}
+  <div class="card">
+    <h3>{{ ensalada.nombre }}</h3>
+    <p><strong>Peso:</strong> {{ ensalada.peso }} g</p>
+    <p><strong>Precio:</strong> ${{ ensalada.precio }}</p>
+    <p><strong>Ingredientes:</strong> {{ ensalada.ingredientes }}</p>
+    <div class="buttons-div">
+      <form action="{{ url_for("edit_ensalada", id=ensalada.id) }}">
+        <button class="buttons" type="submit"><span class="button-content">Editar</span></button>
+      </form>
+      <form action="{{ url_for("delete_ensaladas", id=ensalada.id) }}" method="post" onsubmit="return confirm('¿Seguro que quieres eliminar la ensalada {{ ensalada.nombre }}?');">
+        <button class="buttons" type="submit"><span class="button-content">Eliminar</span></button>
+      </form>
+    </div>
   </div>
-  <footer>
-    <form action="{{url_for("create_ensaladas")}}">
-      <button class="button">Crear</button>
-    </form>
-  </footer>
-  {% endblock content %}
+  {% endfor %}
+</div>
+</div>
+<footer>
+  <form action="{{ url_for("create_ensaladas") }}">
+    <button class="button">Crear</button>
+  </form>
+</footer>
+{% endblock content %}

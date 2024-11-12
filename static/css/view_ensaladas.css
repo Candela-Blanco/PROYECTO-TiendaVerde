@@ -7,18 +7,6 @@ p {
   font-size: 30px;
 }
 
-table,
-th,
-td {
-  border: 1px solid rgb(193, 163, 98);
-  border-collapse: collapse;
-  padding: 10px;
-}
-
-td {
-  word-break: break-word;
-}
-
 #peque {
   height: 2rem;
   padding: 0 1rem;
@@ -26,9 +14,17 @@ td {
 
 .content {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 90%;
 }
 
 footer {
@@ -92,39 +88,43 @@ form {
   height: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .content {
-    padding: 10px;
-  }
 
-  table,
-  tr,
-  th,
-  td {
-    display: block;
-    width: 100%;
-  }
+.card {
+  background-color: #191A1E;
+  border-radius: 8px;
+  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s;
+  border: 1px solid rgb(193, 163, 98);
+}
 
-  table {
-    border: 1px transparent;
-    display: flex;
-    justify-content: center;
-  }
+.card:hover {
+  transform: scale(1.02);
+}
 
-  tr {
-    margin-bottom: 10px;
-    border: 1px solid rgb(193, 163, 98);
-  }
+.card h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #c1a362;
+}
 
-  th {
-    display: none;
-  }
+.card p {
+  font-size: 1em;
+  color: #eaeaea;
+  word-break: break-word;
+}
 
-  td {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    border: none;
-    border-bottom: 1px solid rgb(193, 163, 98);
-  }
+.card .buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons-div {
+  display: flex;
 }
