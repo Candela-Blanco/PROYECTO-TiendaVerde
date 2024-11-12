@@ -60,6 +60,14 @@ def create_ensaladas():
         precio = request.form["precio"]
         peso = request.form["peso"]
         ingrediente_selec = request.form.getlist("ingredientes")
+        if int(precio) > 2147483647 or int(precio) < 0:
+            return render_template(
+                "create_ensaladas.html", message=f"El precio {precio} no es valido"
+            )
+        if int(peso) > 2147483647 or int(peso) < 0:
+            return render_template(
+                "create_ensaladas.html", message=f"El peso {peso} no es valido"
+            )
         cursor.execute(
             "SELECT * FROM ensaladas WHERE nombre = %s",
             (nombre,),
